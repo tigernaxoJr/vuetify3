@@ -18,7 +18,6 @@ jobs:
           # cache: yarn
       # - run: yarn install --frozen-lockfile
       - run: yarn
-      - run: yarn add @rollup/plugin-alias
 
       - name: Build
         # run: npm run docs:build
