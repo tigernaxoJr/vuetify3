@@ -1,5 +1,5 @@
 import { h } from "vue";
-import { VList, VListGroup, VListItem } from "/node_modules/vuetify/components/Vlist";
+import { VList, VListGroup, VListItem } from "vuetify/components/Vlist";
 const props = {
   menus: { type: Array, default: [] },
   depth: { type: Number, default: 0 },
