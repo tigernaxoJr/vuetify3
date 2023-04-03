@@ -36,6 +36,7 @@ export default defineConfig({
       '.vue',
     ],
   },
+  build:{rollupOptions:{external:[/node_modules/]}},
   server: {
     port: 3000,
   },
