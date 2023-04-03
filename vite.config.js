@@ -24,8 +24,7 @@ export default defineConfig({
   define: { 'process.env': {} },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-      'vuetify': fileURLToPath(new URL('./node_modules/vuetify', import.meta.url)),
+      '@': fileURLToPath(new URL('./src', import.meta.url))
     },
     extensions: [
       '.js',
