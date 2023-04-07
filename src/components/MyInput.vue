@@ -8,9 +8,8 @@
     v-bind="$attrs"
   >
     <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
-      <slot :name="slot" v-bind="scope"></slot>
+      <slot :name="slot" v-bind="scope || {}"></slot>
     </template>
-    <slot></slot>
   </v-text-field>
 </template>
 

@@ -17,10 +17,8 @@ jobs:
           node-version: 18
           cache: yarn
       - run: yarn install --frozen-lockfile
-      # - run: yarn
 
       - name: Build
-        # run: npm run docs:build
         run: yarn build
 
       - name: Deploy

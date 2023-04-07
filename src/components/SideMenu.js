@@ -1,5 +1,4 @@
 import { h } from "vue";
-// import { VList, VListGroup, VListItem } from "vuetify/components/Vlist";
 import { VList, VListGroup, VListItem } from "vuetify/components";
 const props = {
   menus: { type: Array, default: [] },
