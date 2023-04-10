@@ -18,6 +18,21 @@ const routes = [
         // 動態載入(Lazy Loading)語法
         component: () => import('@/views/Search.vue'),
       },
+      // 新增 Search 頁面路由設置
+      {
+        path: 'Admin',
+        name: 'Admin',
+        // 動態載入(Lazy Loading)語法
+        // component: () => import('@/views/Search.vue'),
+        children: [
+          {
+            path: 'Frame',
+            name: 'AdminFrame',
+            component: () => import('@/views/Admin/FramePage.vue'),
+            props: true
+          }
+        ]
+      },
     ],
   },
 ]

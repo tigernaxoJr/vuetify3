@@ -8,9 +8,9 @@ type MenusBase = Pick<
   VListItem['$props'],
   Exclude<keyof VListItem['$props'], `v-${string}` | `$${string}`>
 >
-type MenusExtra = { id: any, }
+type MenusExtra = { id: any }
 type MenusUnit = MenusBase & MenusExtra & { children?: MenusUnit }
-export type Menus = Array<MenusUnit>;
+export type Menus = Array<MenusUnit & any>;
 //#endregion
 
 //#region IProps

@@ -5,10 +5,10 @@ export default
     { id:'0A', title: "搜尋", prependIcon: "mdi-home", to:"/Search" },
     {
       id: '01',
-      title: "第一層目錄A",
+      title: "行政",
       prependIcon: "",
       children: [
-        { id:'011', title: "Management", prependIcon: "mdi-account-multiple-outline" },
+        { id:'011', title: "單位要處理的事項", prependIcon: "mdi-account-multiple-outline", to: {name: 'AdminFrame', query:{url: 'https://docs.google.com/spreadsheets/d/1XlOrY99H4iPuLlXtYpWrASM39UAHT4a3R8YZLv2bD0s'}} },
         { id:'012', title: "Settings", prependIcon: "mdi-cog-outline" },
       ],
     },
