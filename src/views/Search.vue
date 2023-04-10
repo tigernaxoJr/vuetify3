@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import TextField from "@/components/MyTextField.vueue";
+import TextField from "@/components/MyInput.vue";
 import { ref } from "vue";
 var loading = ref(false);
 </script>
