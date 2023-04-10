@@ -10,7 +10,6 @@
       <SideMenu :menus="state.menus" :opened="opened"></SideMenu>
     </v-navigation-drawer>
     <v-main>
-      <MyBtn>11</MyBtn>
       <router-view />
     </v-main>
   </v-app>
@@ -19,8 +18,10 @@
 <script setup>
 import { onMounted, ref, reactive } from "vue";
 import SideMenu from "@/components/SideMenu";
-import MyBtn from "@/components/MyBtn.vue";
 import menus from "@/menus";
+import { VListItem } from "vuetify/components";
+console.log("VListItem:", VListItem);
+console.log("VListItem.props:", VListItem.props);
 const drawer = ref(null);
 const state = reactive({
   menus: [],
