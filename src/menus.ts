@@ -1,3 +1,4 @@
+import { Menus } from "@/components/SideMenu"
 export default
 [
     { id:'00', title: "首頁", prependIcon: "mdi-home", to:"/" },
@@ -30,5 +31,5 @@ export default
       ],
     },
     {id: '03', title: "第一層物件", prependIcon: "mdi-delete", href: "https://google.com" },
-  ]
+  ] as Menus
 
