@@ -26,7 +26,7 @@ const routes = [
         // component: () => import('@/views/Search.vue'),
         children: [
           {
-            path: 'Frame',
+            path: 'Frame/:url',
             name: 'AdminFrame',
             component: () => import('@/views/Admin/FramePage.vue'),
             props: true

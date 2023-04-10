@@ -1,12 +1,8 @@
 <template>
-  <div>url: {{ url }}</div>
-  <div>props: {{ $props }}</div>
-  <iframe :src="url"></iframe>
-  <!-- <HelloWorld /> -->
+  <iframe class="w-100 h-100" :src="url"></iframe>
 </template>
 
 <script setup>
-import HelloWorld from "@/components/HelloWorld";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 

@@ -1,5 +1,5 @@
 import day from 'dayjs'
-// 為 moment.js format 的功能
+// 為 day.js format 的功能加入 YYY
 function m() {
   var self = day(...arguments);
   self.__proto__ = m.prototype;
