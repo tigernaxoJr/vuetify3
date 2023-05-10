@@ -1,4 +1,4 @@
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 
 declare module 'dayjs' {
   interface Dayjs {
