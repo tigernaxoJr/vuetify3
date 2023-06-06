@@ -33,8 +33,23 @@ const routes = [
           }
         ]
       },
+
     ],
   },
+  {
+        path: '/Test',
+        name: 'Test',
+        // 動態載入(Lazy Loading)語法
+        component: () => import('@/layouts/TestLayout.vue'),
+        children: [
+          {
+            path: '',
+            name: 'iframe',
+            component: () => import('@/views/Test/IFrame.vue'),
+            props: true
+          }
+        ]
+      },
 ]
 
 const router = createRouter({
