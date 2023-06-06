@@ -1,0 +1,1 @@
+import{as as r,a as t,L as a,al as c,P as n}from"./index.6bb98210.js";const u=["src"],p={__name:"FramePage",setup(l){const e=r();window.route=e,console.log("route",e.fullPath,e);const o=t(()=>{const{url:s}=e.params;return s||""});return(s,_)=>(a(),c("iframe",{class:"w-100 h-100",src:n(o)},null,8,u))}};export{p as default};
