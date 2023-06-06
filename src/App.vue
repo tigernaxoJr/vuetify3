@@ -32,4 +32,5 @@ function dateUsage() {
   console.log(d.format("民國YYY年MM月DD日 HH:mm:ss"));
   //#endregion
 }
+window.day = dayx;
 </script>
