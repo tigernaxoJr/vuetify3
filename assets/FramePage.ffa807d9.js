@@ -1,1 +1,0 @@
-import{as as o,c as t,P as a,ar as c,U as n}from"./index.487400d2.js";const u=["src"],p={__name:"FramePage",setup(l){const e=o();window.route=e,console.log("route",e.fullPath,e);const s=t(()=>{const{url:r}=e.params;return r||""});return(r,_)=>(a(),c("iframe",{class:"w-100 h-100",src:n(s)},null,8,u))}};export{p as default};
