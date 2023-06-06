@@ -1,1 +1,0 @@
-import{r as f,ae as i,o as u,n as R,V as v}from"./index.6bb98210.js";function d(t){const s=f(),o=f();if(i){const n=new ResizeObserver(e=>{t==null||t(e,n),e.length&&(o.value=e[0].contentRect)});u(()=>{n.disconnect()}),R(s,(e,r)=>{r&&(n.unobserve(r),o.value=void 0),e&&n.observe(e)},{flush:"post"})}return{resizeRef:s,contentRect:v(o)}}export{d as u};
