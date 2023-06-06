@@ -1,22 +1,23 @@
 import day from 'dayjs'
 const prototype = Object.getPrototypeOf(day())
-const yyy = time => (time.getFullYear() - 1911).toString().padStart(3, '0')
+const yyy = dt => (dt.getFullYear() - 1911).toString().padStart(3, '0')
 const handler = {
   get: function (target, prop, receiver) {
+    // age, dte, tme
     if (prop === 'age') return day().diff(receiver, 'years', false)
     if (prop === 'dte') return receiver.format('YYYMMDD')
     if (prop === 'tme') return receiver.format('HHmmss')
-    if (prop === 'format') {
-      return function (...args) {
-        const format = args[0]
+    // format
+    if (prop === 'format')
+      return format => {
         const formattingTokens = /Y{4,}|Y{3}|[^Y{3}]+/g
         const arr = format.match(formattingTokens)
-        const ktformat = arr
+        const format2 = arr
           .map(x => (x === 'YYY' ? yyy(target.$d) : x))
           .join('')
-        return new day(target.$d).format(ktformat)
+        console.log('ktformat', format2)
+        return new day(target.$d).format(format2)
       }
-    }
 
     // Return the original property value
     if (typeof target[prop] !== 'function') return target[prop]
