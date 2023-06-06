@@ -1,25 +1,26 @@
 import day from 'dayjs'
-const rocyyy = (dt)=>(dt.getFullYear() - 1911).toString().padStart(3, '0')
 const prototype = Object.getPrototypeOf(day())
+const yyy = time => (time.getFullYear() - 1911).toString().padStart(3, '0')
 const handler = {
   get: function (target, prop, receiver) {
-    // age, dte, tme
     if (prop === 'age') return day().diff(receiver, 'years', false)
     if (prop === 'dte') return receiver.format('YYYMMDD')
     if (prop === 'tme') return receiver.format('HHmmss')
-    // format
-    if (prop === 'format') return (format) =>{
+    if (prop === 'format') {
+      return function (...args) {
+        const format = args[0]
         const formattingTokens = /Y{4,}|Y{3}|[^Y{3}]+/g
         const arr = format.match(formattingTokens)
         const ktformat = arr
-          .map(x => x === 'YYY' ? rocyyy(target.$d) : x)
+          .map(x => (x === 'YYY' ? yyy(target.$d) : x))
           .join('')
-        return target.format(ktformat)
+        return new day(target.$d).format(ktformat)
       }
+    }
 
-    // Property is not function, else condition
+    // Return the original property value
     if (typeof target[prop] !== 'function') return target[prop]
-    // Property is function, Wrap it
+    // Wrap the original function with custom behavior
     return function (...args) {
       const result = target[prop].apply(target, args)
       const isReturnDayjs = Object.getPrototypeOf(result) === prototype
@@ -45,6 +46,7 @@ const handler = {
     return Reflect.set(...arguments)
   },
 }
+
 const p = (...args) => new Proxy(day(...args), handler)
 
 export default p
