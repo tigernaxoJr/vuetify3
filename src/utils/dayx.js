@@ -28,7 +28,7 @@ const handler = {
     if (typeof target[prop] !== 'function') return target[prop]
     // Wrap the original function with custom behavior
     return function (...args) {
-      console.log(Calling function: ${prop})
+      console.log(`Calling function: ${prop}`)
       const result = target[prop].apply(target, args)
       if (Object.getPrototypeOf(result) === prototype) return p(result, handler)
       return result
