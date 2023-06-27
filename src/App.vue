@@ -3,21 +3,37 @@
 </template>
 
 <script setup>
-import api from '@/api'
-import { onMounted, reactive } from 'vue'
-import dayx from '../src/utils/dayx'
-const state = reactive({})
+import api from "@/api";
+import { onMounted, reactive } from "vue";
+import dayx from "../src/utils/dayx";
+import { useAppStore } from "./store/app";
+import { useAuthStore } from "./store/auth";
+const state = reactive({});
 onMounted(async () => {
-  state.users = await api.GetUser()
-  dateUsage()
-})
+  state.users = await api.GetUser();
+  dateUsage();
+});
+
+const appstore = useAppStore();
+const authstore = useAuthStore();
+onMounted(async () => {
+  appstore.loading = true;
+  try {
+    authstore.Authentication();
+  } catch (error) {
+    // handle error
+    console.error(error);
+  } finally {
+    appstore.loading = false;
+  }
+});
 
 function dateUsage() {
   //#region 從資料庫的 dte, tme 欄位
-  let d = dayx()
-  d.dte = '330315'
-  d.tme = '123338'
-  console.log(d.format('民國YYY年MM月DD日 HH:mm:ss'))
+  let d = dayx();
+  d.dte = "330315";
+  d.tme = "123338";
+  console.log(d.format("民國YYY年MM月DD日 HH:mm:ss"));
   // 民國110年03月15日 12:33:38
   //#endregion
 
@@ -32,5 +48,5 @@ function dateUsage() {
   // console.log(d.format("民國YYY年MM月DD日 HH:mm:ss"));
   // //#endregion
 }
-window.day = dayx
+window.day = dayx;
 </script>
