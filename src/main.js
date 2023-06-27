@@ -13,8 +13,8 @@ import { createApp } from 'vue'
 // Plugins
 import { registerPlugins } from '@/plugins'
 import SideMenu from '@/components/SideMenu'
-import MyBtn from './MyBtn.vue'
-import TextField from './TextField.vue'
+import MyBtn from '@/components/MyBtn.vue'
+import TextField from '@/components/TextField.vue'
 
 const app = createApp(App)
 app.component('SideMenu', SideMenu)

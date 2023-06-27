@@ -8,7 +8,6 @@
     <v-navigation-drawer v-model="drawer">
       <!-- 這裡塞 Menu List、以 opened 預設打開的節點  -->
       <SideMenu :menus="state.menus" :opened="opened"></SideMenu>
-      <Btn></Btn>
     </v-navigation-drawer>
     <v-main>
       <router-view />
