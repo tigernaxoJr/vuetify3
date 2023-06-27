@@ -3,28 +3,25 @@
 </template>
 
 <script setup>
-import api from "@/api";
-import { onMounted, reactive } from "vue";
+import { onMounted } from "vue";
 import dayx from "../src/utils/dayx";
 import { useAppStore } from "./store/app";
 import { useAuthStore } from "./store/auth";
-const state = reactive({});
-onMounted(async () => {
-  state.users = await api.GetUser();
-  dateUsage();
-});
 
 const appstore = useAppStore();
 const authstore = useAuthStore();
+
+// 驗證
 onMounted(async () => {
-  appstore.loading = true;
+  const loadingHolder = "app.auth";
+  appstore.AddLoading(loadingHolder);
   try {
     authstore.Authentication();
   } catch (error) {
     // handle error
     console.error(error);
   } finally {
-    appstore.loading = false;
+    appstore.RemoveLoading(loadingHolder);
   }
 });
 

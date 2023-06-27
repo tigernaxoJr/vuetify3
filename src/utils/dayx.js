@@ -15,7 +15,6 @@ const handler = {
         const format2 = arr
           .map(x => (x === 'YYY' ? yyy(target.$d) : x))
           .join('')
-        console.log('ktformat', format2)
         return new day(target.$d).format(format2)
       }
 

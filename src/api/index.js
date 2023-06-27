@@ -16,11 +16,9 @@ function responseHandler(){ }
 api.interceptors.response.use(responseHandler)
 //#endregion
 
-// api.setAuth = function (token) {
-//   this.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-// };
-tokenReceivers.push((token) => api.defaults.headers.common['Authorization']= `Bearer ${token}` )
-tokenReceivers.push((token) => console.log('token') )
+tokenReceivers.push(
+  (token) => api.defaults.headers.common['Authorization']= `Bearer ${token}`
+)
 // 模擬 ajax
 api.GetUser = () => new Promise(res=>res([
   { id: 1, name: '', age: 22 },

@@ -1,12 +1,10 @@
-// Utilities
+import axios from "axios";
 import { isJwtExpired } from "jwt-check-expiration";
-import { parseJwt } from "@/utils/Jwt";
 import { defineStore } from 'pinia'
 import { useLocalStorage } from '@vueuse/core';
+import { parseJwt } from "@/utils/Jwt";
 import { URL as MyUrl } from "@/utils/URL";
-import { useAppStore } from './app';
-import axios from "axios";
-
+import router from '@/router'
 
 export const tokenReceivers = []
 export const useAuthStore = defineStore('auth', {
@@ -25,25 +23,14 @@ export const useAuthStore = defineStore('auth', {
   },
   actions:{
     async Authentication(){
-      const appStore = useAppStore()
-      const urlParams = MyUrl.URLSearchParams;
-      let key = urlParams.get("Key") || urlParams.get("key") || urlParams.get("KEY");
+      let key = MyUrl.getCaseInsensitive('key')
+      if (!key && (!this.token || isJwtExpired(this.token))) this.Logout()
       if (key) {
         this.token = await this.GetToken(key);
-        // todo handle gettoken failure
-        appStore.crtno = this.crtno;
-        return
+        // 移除後面所有的參數(避免 F5 會吃到過期的  KEY，導致 token 沒過期 KEY 就先過期了)
+        router.push('/')
       }
-      //#region 沒有 key 的情況
-      // token 有效
-      if (!!this.token && !isJwtExpired(this.token)) {
-        // 嘗試 reflash token
-        // await this.ReflashToken();
-        this.setAuth();
-      }
-      // 沒有 token 或 token 過期
-      if (!this.token || isJwtExpired(this.token)) this.Logout()
-      //#endregion
+      this.setAuth()
     },
     async Logout() {
       this.token = null;
@@ -57,18 +44,17 @@ export const useAuthStore = defineStore('auth', {
           return data.token
         }
       } catch (error) {
-        console.log('authStore',error)
+        console.log('取得登入資訊失敗',error)
         throw '取得登入資訊失敗';
       }
     },
     setAuth() {
       this.isLogin = true;
       const payload = parseJwt(this.token);
-      console.log('token data:',payload)
       this.opid = payload.opid;
       this.opname= payload.opname;
       this.hsp = payload.hspnme
-      if (!!this.token) tokenReceivers.forEach(x=>x(token))
+      if (!!this.token) tokenReceivers.forEach(x=>x(this.token))
     },
   }
 })
