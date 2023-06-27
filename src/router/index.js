@@ -3,13 +3,24 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    // component: () => import('@/layouts/default/Default.vue'), // 刪除這行
     component: () => import('@/layouts/MainLayout.vue'), // 新增這行
     children: [
       {
         path: '',
         name: 'Home',
         component: () => import('@/views/Home.vue'),
+      },
+      {
+        path: 'Template',
+        name: 'Template',
+        children: [
+          {
+            path: 'Dayjsx',
+            name: 'Dayjsx',
+            component: () => import('@/views/Template/Dayjsx.vue'),
+            props: true
+          }
+        ]
       },
       // 新增 Search 頁面路由設置
       {

@@ -2,7 +2,9 @@ import { Menu } from "@/components/SideMenu"
 const rawMenus = [
   //#region Menus 從後端 rmdb 拿資料的範例，可簡單通過 getMenus 拿到 menuTree
   { id:'00', title: "首頁", prependIcon: "mdi-home", to:"/" },
-  { id:'0A', title: "搜尋", prependIcon: "mdi-home", to:"/Search" },
+  { id:'0A', title: "範例", prependIcon: "mdi-home"},
+  { id:'0A1', parent: '0A', title: "時間", prependIcon: "mdi-account-multiple-outline", to: '/Template/Dayjsx' },
+  // { id:'0A', title: "搜尋", prependIcon: "mdi-home", to:"/Search" },
   { id: '01', title: "日常行政", prependIcon: "" },
   {
     id:'013', parent: '01', title: "院內信箱", prependIcon: "mdi-account-multiple-outline",

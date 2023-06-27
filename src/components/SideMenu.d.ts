@@ -22,4 +22,10 @@ export type Props = {
 
 const SideMenu :DefineComponent<Props>
 
+// declare module '@vue/runtime-core' {
+//   export interface GlobalComponents {
+//     SideMenu: SideMenu
+//   }
+// }
+
 export default SideMenu

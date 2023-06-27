@@ -8,9 +8,9 @@
     <v-navigation-drawer v-model="drawer">
       <!-- 這裡塞 Menu List、以 opened 預設打開的節點  -->
       <SideMenu :menus="state.menus" :opened="opened"></SideMenu>
+      <Btn></Btn>
     </v-navigation-drawer>
     <v-main>
-      {{ state.menus }}
       <router-view />
     </v-main>
   </v-app>
@@ -18,7 +18,6 @@
 
 <script setup>
 import { onMounted, ref, reactive } from "vue";
-import SideMenu from "@/components/SideMenu";
 import menus from "@/menus";
 const drawer = ref(null);
 const state = reactive({
