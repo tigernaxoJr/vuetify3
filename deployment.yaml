@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: igmw1000app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: igmw1000app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: igmw1000app
+    spec:
+      containers:
+        - name: igmw1000app-container
+          image: harbor.ktgh.com.tw/ktgh/igmw1000app:<VERSION>
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: igmw1000app-service
+spec:
+  type: ClusterIP
+  selector:
+    app: igmw1000app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: igmw1000app-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`igmw1000app.ktgh.com.tw`)
+      kind: Rule
+      services:
+        - name: igmw1000app-service
+          port: 80
+  tls:
+    secretName: ktgh-ssl-cert
