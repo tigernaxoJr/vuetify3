@@ -11,12 +11,19 @@ import { useAuthStore } from "./store/auth";
 const appstore = useAppStore();
 const authstore = useAuthStore();
 
-// 驗證
+appstore.addInitProcedure(() => {
+  console.log("app init procedue 1");
+});
+appstore.addInitProcedure(() => {
+  console.log("app init procedue 2");
+});
+
 onMounted(async () => {
-  const loadingHolder = "app.auth";
+  const loadingHolder = "app";
   appstore.AddLoading(loadingHolder);
   try {
-    authstore.Authentication();
+    authstore.Authentication(); // 取得驗證
+    appstore.init(); // 初始化 app
   } catch (error) {
     // handle error
     console.error(error);

@@ -1,4 +1,4 @@
-import { tokenReceivers } from '@/store/auth';
+import { tokenSubscribers } from '@/store/auth';
 import axios from 'axios'
 
 //#region create axios instance
@@ -16,7 +16,7 @@ function responseHandler(){ }
 api.interceptors.response.use(responseHandler)
 //#endregion
 
-tokenReceivers.push(
+tokenSubscribers.push(
   (token) => api.defaults.headers.common['Authorization']= `Bearer ${token}`
 )
 // 模擬 ajax

@@ -1,25 +1,41 @@
 // Utilities
 import { defineStore } from 'pinia'
 
+const loadingTags= []
+const initProcedue = []
+const afterInitCallBack = []
 export const useAppStore = defineStore('app', {
   state: () => ({
-    //
     inited: false,
-    loadingHolders: [],
-    afterInitCallBack: [],
   }),
   getters:{
     loading(){
-      return this.loadingHolders.length > 0
+      return loadingTags.length > 0
     }
   },
   actions: {
-    AddLoading(key){
-      this.loadingHolders.push(key)
+    // 添加 app 啟動程序
+    addInitProcedure(func) {
+      initProcedue.push(func);
     },
+    // 啟動 app
+    async init() {
+      initProcedue.forEach(async (x) => await x());
+      this.inited = true;
+      afterInitCallBack.forEach((x) => x());
+    },
+    // 添加啟動 app 之後要做的事
+    onInited(func) {
+      afterInitCallBack.push(func);
+    },
+    // 加入 loading tag
+    AddLoading(key){
+      loadingTags.push(key)
+    },
+    // 移除 loading tag
     RemoveLoading(key){
-      const idx = this.loadingHolders.indexOf(key)
-      if(idx !== -1) this.loadingHolders.splice(idx, 1)
+      const idx = loadingTags.indexOf(key)
+      if(idx !== -1) loadingTags.splice(idx, 1)
     }
   }
 })
